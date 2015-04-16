@@ -29,3 +29,7 @@ endif()
 
 
 add_library(glog ${GLOG_FILES})
+install(TARGETS glog 
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+				ARCHIVE DESTINATION lib/static)
