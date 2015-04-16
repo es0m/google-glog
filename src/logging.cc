@@ -65,6 +65,7 @@
 #ifdef HAVE_STACKTRACE
 # include "stacktrace.h"
 #endif
+#include <algorithm>
 
 using std::string;
 using std::vector;

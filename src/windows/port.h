@@ -58,6 +58,8 @@
 #include <stdarg.h>          /* template_dictionary.cc uses va_copy */
 #include <string.h>          /* for _strnicmp(), strerror_s() */
 #include <time.h>            /* for localtime_s() */
+#if defined(_MSC_VER) && _MSC_VER <1900 
+
 /* Note: the C++ #includes are all together at the bottom.  This file is
  * used by both C and C++ code, so we put all the C++ together.
  */
@@ -114,7 +116,12 @@ extern int snprintf(char *str, size_t size,
 extern int safe_vsnprintf(char *str, size_t size,
                           const char *format, va_list ap);
 #define vsnprintf(str, size, format, ap)  safe_vsnprintf(str, size, format, ap)
+#ifndef va_copy
 #define va_copy(dst, src)  (dst) = (src)
+#endif
+
+#endif /* MSVC<1800*/
+
 
 /* Windows doesn't support specifying the number of buckets as a
  * hash_map constructor arg, so we leave this blank.
